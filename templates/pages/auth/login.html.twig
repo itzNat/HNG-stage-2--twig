@@ -1,0 +1,73 @@
+{# templates/pages/auth/login.html.twig #}
+{% extends "layouts/auth.html.twig" %}
+
+{% block auth_content %}
+<div class="auth-card glass-card">
+    <!-- Header -->
+    <div class="auth-header">
+        <a href="/" class="back-home">← Back to home</a>
+        <h1 class="auth-title">Welcome Back</h1>
+        <p class="auth-subtitle">Sign in to your TicketFlow account</p>
+    </div>
+
+    <!-- Form -->
+    <form method="POST" class="auth-form">
+        <div class="form-group">
+            <label for="email" class="form-label">Email Address</label>
+            <input
+                type="email"
+                id="email"
+                name="email"
+                class="form-input"
+                placeholder="Enter your email"
+                required
+            />
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="form-label">Password</label>
+            <input
+                type="password"
+                id="password"
+                name="password"
+                class="form-input"
+                placeholder="Enter your password"
+                required
+            />
+        </div>
+
+        <div class="form-options">
+            <label class="checkbox-label">
+                <input type="checkbox" />
+                <span class="checkmark"></span>
+                Remember me
+            </label>
+            <a href="/forgot-password" class="forgot-password">
+                Forgot password?
+            </a>
+        </div>
+
+        <button type="submit" class="auth-btn">
+            Sign In
+        </button>
+    </form>
+
+    <!-- Footer -->
+    <div class="auth-footer">
+        <p>
+            Don't have an account?
+            <a href="/auth/signup" class="auth-link">Sign up now</a>
+        </p>
+    </div>
+</div>
+
+<!-- Demo Credentials -->
+<div class="demo-credentials glass-card">
+    <h3>Demo Credentials</h3>
+    <p>Use any email and password to sign up first</p>
+    <div class="demo-info">
+        <span>Email: demo@ticketflow.com</span>
+        <span>Password: anypassword</span>
+    </div>
+</div>
+{% endblock %}

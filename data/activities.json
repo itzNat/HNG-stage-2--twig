@@ -1,0 +1,29 @@
+[
+    {
+        "id": "68fe3966ad995",
+        "action": "created",
+        "ticket": "bfdSBdfns",
+        "ticketId": "68fe39669abd5",
+        "user": "You",
+        "time": "2025-10-26T15:08:22+00:00",
+        "icon": "\u2795"
+    },
+    {
+        "id": "1",
+        "action": "created",
+        "ticket": "Login Issue - Unable to access account",
+        "ticketId": "1",
+        "user": "Sarah Chen",
+        "time": "2025-10-26T13:08:22+00:00",
+        "icon": "\u2795"
+    },
+    {
+        "id": "2",
+        "action": "updated",
+        "ticket": "Payment Gateway Integration",
+        "ticketId": "2",
+        "user": "Mike Ross",
+        "time": "2025-10-26T14:08:22+00:00",
+        "icon": "\u270f\ufe0f"
+    }
+]

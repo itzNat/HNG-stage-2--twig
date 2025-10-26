@@ -1,0 +1,56 @@
+{# templates/layouts/app.html.twig #}
+{% extends "layouts/base.html.twig" %}
+
+{% block content %}
+<div class="layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <!-- Logo -->
+        <div class="sidebar-logo">
+            <a href="/dashboard" class="logo-link">
+                <span class="logo-icon">🎫</span>
+                <span class="logo-text">TicketFlow</span>
+            </a>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+            <a href="/dashboard" class="nav-item {% if current_page == 'dashboard' %}active{% endif %}">
+                <span class="nav-icon">📊</span>
+                <span class="nav-label">Dashboard</span>
+                {% if current_page == 'dashboard' %}<div class="active-indicator"></div>{% endif %}
+            </a>
+            <a href="/tickets" class="nav-item {% if current_page == 'tickets' %}active{% endif %}">
+                <span class="nav-icon">🎫</span>
+                <span class="nav-label">Tickets</span>
+                {% if current_page == 'tickets' %}<div class="active-indicator"></div>{% endif %}
+            </a>
+        </nav>
+
+        <!-- User Info & Logout -->
+        <div class="sidebar-footer">
+            <div class="user-info">
+                <div class="user-avatar">
+                    {{ user.email|first|upper }}
+                </div>
+                <div class="user-details">
+                    <span class="user-name">{{ user.email }}</span>
+                    <span class="user-role">Admin</span>
+                </div>
+            </div>
+            <a href="/auth/logout" class="logout-btn">
+                <span class="logout-icon">🚪</span>
+                Logout
+            </a>
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Page Content -->
+        <div class="content-wrapper">
+            {% block app_content %}{% endblock %}
+        </div>
+    </main>
+</div>
+{% endblock %}

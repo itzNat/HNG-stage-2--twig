@@ -1,0 +1,57 @@
+[
+    {
+        "id": "68fe39669abd5",
+        "title": "bfdSBdfns",
+        "description": "",
+        "status": "open",
+        "priority": "medium",
+        "assignee": "Unassigned",
+        "createdAt": "2025-10-26T15:08:22+00:00",
+        "updatedAt": "2025-10-26T15:08:22+00:00",
+        "createdBy": "legendaryelzio@gmail.com"
+    },
+    {
+        "id": "1",
+        "title": "Login Issue - Unable to access account",
+        "description": "Users are reporting they cannot login to their accounts. Getting authentication errors.",
+        "status": "open",
+        "priority": "high",
+        "assignee": "Sarah Chen",
+        "createdAt": "2025-10-26T13:08:22+00:00",
+        "updatedAt": "2025-10-26T14:38:22+00:00",
+        "createdBy": "system"
+    },
+    {
+        "id": "2",
+        "title": "Payment Gateway Integration",
+        "description": "Integrate new payment gateway for international transactions.",
+        "status": "in_progress",
+        "priority": "high",
+        "assignee": "Mike Ross",
+        "createdAt": "2025-10-26T10:08:22+00:00",
+        "updatedAt": "2025-10-26T14:08:22+00:00",
+        "createdBy": "system"
+    },
+    {
+        "id": "3",
+        "title": "Mobile App Crash on iOS",
+        "description": "App crashes when navigating to profile section on iOS devices.",
+        "status": "open",
+        "priority": "medium",
+        "assignee": "Alex Johnson",
+        "createdAt": "2025-10-26T07:08:22+00:00",
+        "updatedAt": "2025-10-26T13:08:22+00:00",
+        "createdBy": "system"
+    },
+    {
+        "id": "4",
+        "title": "Update Documentation",
+        "description": "Update API documentation with new endpoints and examples.",
+        "status": "closed",
+        "priority": "low",
+        "assignee": "You",
+        "createdAt": "2025-10-25T15:08:22+00:00",
+        "updatedAt": "2025-10-26T12:08:22+00:00",
+        "createdBy": "system"
+    }
+]
