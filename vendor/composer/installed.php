@@ -1,13 +1,13 @@
 <?php return array(
     'root' => array(
         'name' => 'ticketflow/twig-app',
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
-        'reference' => null,
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
+        'reference' => 'c8448bb8b478bfa07e659bdf431e1fc38323ac54',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'dev' => true,
+        'dev' => false,
     ),
     'versions' => array(
         'symfony/deprecation-contracts' => array(
@@ -64,19 +64,10 @@
             'aliases' => array(),
             'dev_requirement' => false,
         ),
-        'symfony/var-dumper' => array(
-            'pretty_version' => 'v6.4.26',
-            'version' => '6.4.26.0',
-            'reference' => 'cfae1497a2f1eaad78dbc0590311c599c7178d4a',
-            'type' => 'library',
-            'install_path' => __DIR__ . '/../symfony/var-dumper',
-            'aliases' => array(),
-            'dev_requirement' => true,
-        ),
         'ticketflow/twig-app' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
-            'reference' => null,
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
+            'reference' => 'c8448bb8b478bfa07e659bdf431e1fc38323ac54',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
