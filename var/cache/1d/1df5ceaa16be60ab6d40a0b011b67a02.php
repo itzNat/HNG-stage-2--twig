@@ -84,9 +84,7 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
             <span class=\"btn-icon\">➕</span>
             Create Ticket
         </button>
-";
-        // line 27
-        yield "    </div>
+    </div>
 
     <!-- Filters and Search -->
     <div class=\"tickets-filters\">
@@ -99,84 +97,99 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
                     id=\"searchInput\"
                     placeholder=\"Search tickets...\"
                     value=\"";
-        // line 39
+        // line 33
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["search"] ?? null), "html", null, true);
         yield "\"
                     class=\"search-input\"
                 />
                 ";
-        // line 42
+        // line 36
         if ((($tmp = ($context["search"] ?? null)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-            // line 43
+            // line 37
             yield "                    <button onclick=\"clearSearch()\" class=\"clear-search\">×</button>
                 ";
         }
-        // line 45
+        // line 39
         yield "            </div>
         </div>
 
         <!-- Filter Tabs -->
-        <div class=\"filter-tabs\">
+        <div class=\"filter-tabs\" id=\"filterTabs\">
             ";
-        // line 50
+        // line 44
         $context["allTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), ($context["tickets"] ?? null));
+        // line 45
+        yield "            ";
+        $context["openTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 45) == "open"); }));
+        // line 46
+        yield "            ";
+        $context["inProgressTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 46) == "in_progress"); }));
+        // line 47
+        yield "            ";
+        $context["closedTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 47) == "closed"); }));
+        // line 48
+        yield "            ";
+        $context["highPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 48) == "high"); }));
+        // line 49
+        yield "            ";
+        $context["mediumPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 49) == "medium"); }));
+        // line 50
+        yield "            ";
+        $context["lowPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 50) == "low"); }));
         // line 51
-        yield "            ";
-        $context["openTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 51) == "open"); }));
-        // line 52
-        yield "            ";
-        $context["inProgressTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 52) == "in_progress"); }));
-        // line 53
-        yield "            ";
-        $context["closedTicketsCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "status", [], "any", false, false, false, 53) == "closed"); }));
-        // line 54
-        yield "            ";
-        $context["highPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 54) == "high"); }));
-        // line 55
-        yield "            ";
-        $context["mediumPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 55) == "medium"); }));
-        // line 56
-        yield "            ";
-        $context["lowPriorityCount"] = Twig\Extension\CoreExtension::length($this->env->getCharset(), Twig\Extension\CoreExtension::filter($this->env, ($context["tickets"] ?? null), function ($__t__) use ($context, $macros) { $context["t"] = $__t__; return (CoreExtension::getAttribute($this->env, $this->source, ($context["t"] ?? null), "priority", [], "any", false, false, false, 56) == "low"); }));
-        // line 57
         yield "            
             <button
                 onclick=\"setFilter('all')\"
                 class=\"filter-tab ";
-        // line 60
+        // line 54
         if ((($context["filter"] ?? null) == "all")) {
             yield "active";
         }
         yield "\"
+                data-filter=\"all\"
+                data-count=\"";
+        // line 56
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["allTicketsCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">All Tickets</span>
                 <span class=\"filter-count\">";
-        // line 63
+        // line 59
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["allTicketsCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
             <button
                 onclick=\"setFilter('open')\"
                 class=\"filter-tab ";
-        // line 67
+        // line 63
         if ((($context["filter"] ?? null) == "open")) {
             yield "active";
         }
         yield "\"
+                data-filter=\"open\"
+                data-count=\"";
+        // line 65
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["openTicketsCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">Open</span>
                 <span class=\"filter-count\">";
-        // line 70
+        // line 68
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["openTicketsCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
             <button
                 onclick=\"setFilter('in_progress')\"
                 class=\"filter-tab ";
-        // line 74
+        // line 72
         if ((($context["filter"] ?? null) == "in_progress")) {
             yield "active";
         }
+        yield "\"
+                data-filter=\"in_progress\"
+                data-count=\"";
+        // line 74
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["inProgressTicketsCount"] ?? null), "html", null, true);
         yield "\"
             >
                 <span class=\"filter-label\">In Progress</span>
@@ -193,55 +206,75 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
             yield "active";
         }
         yield "\"
+                data-filter=\"closed\"
+                data-count=\"";
+        // line 83
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["closedTicketsCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">Closed</span>
                 <span class=\"filter-count\">";
-        // line 84
+        // line 86
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["closedTicketsCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
             <button
                 onclick=\"setFilter('high')\"
                 class=\"filter-tab ";
-        // line 88
+        // line 90
         if ((($context["filter"] ?? null) == "high")) {
             yield "active";
         }
         yield "\"
+                data-filter=\"high\"
+                data-count=\"";
+        // line 92
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["highPriorityCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">High Priority</span>
                 <span class=\"filter-count\">";
-        // line 91
+        // line 95
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["highPriorityCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
             <button
                 onclick=\"setFilter('medium')\"
                 class=\"filter-tab ";
-        // line 95
+        // line 99
         if ((($context["filter"] ?? null) == "medium")) {
             yield "active";
         }
         yield "\"
+                data-filter=\"medium\"
+                data-count=\"";
+        // line 101
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["mediumPriorityCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">Medium Priority</span>
                 <span class=\"filter-count\">";
-        // line 98
+        // line 104
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["mediumPriorityCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
             <button
                 onclick=\"setFilter('low')\"
                 class=\"filter-tab ";
-        // line 102
+        // line 108
         if ((($context["filter"] ?? null) == "low")) {
             yield "active";
         }
         yield "\"
+                data-filter=\"low\"
+                data-count=\"";
+        // line 110
+        yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["lowPriorityCount"] ?? null), "html", null, true);
+        yield "\"
             >
                 <span class=\"filter-label\">Low Priority</span>
                 <span class=\"filter-count\">";
-        // line 105
+        // line 113
         yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["lowPriorityCount"] ?? null), "html", null, true);
         yield "</span>
             </button>
@@ -251,170 +284,180 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     <!-- Tickets Grid -->
     <div class=\"tickets-content\">
         ";
-        // line 112
+        // line 120
         if (Twig\Extension\CoreExtension::testEmpty(($context["tickets"] ?? null))) {
-            // line 113
+            // line 121
             yield "            <div class=\"empty-state\">
                 <div class=\"empty-icon\">🎫</div>
                 <h3 class=\"empty-title\">
                     ";
-            // line 116
+            // line 124
             if ((($tmp = ($context["search"] ?? null)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-                // line 117
+                // line 125
                 yield "                        No tickets found for \"";
                 yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["search"] ?? null), "html", null, true);
                 yield "\"
                     ";
             } else {
-                // line 119
+                // line 127
                 yield "                        ";
                 if ((($context["filter"] ?? null) == "open")) {
                     yield "No open tickets
                         ";
-                } elseif ((                // line 120
+                } elseif ((                // line 128
 ($context["filter"] ?? null) == "in_progress")) {
                     yield "No tickets in progress
                         ";
-                } elseif ((                // line 121
+                } elseif ((                // line 129
 ($context["filter"] ?? null) == "closed")) {
                     yield "No closed tickets
                         ";
-                } elseif ((                // line 122
+                } elseif ((                // line 130
 ($context["filter"] ?? null) == "high")) {
                     yield "No high priority tickets
                         ";
-                } elseif ((                // line 123
+                } elseif ((                // line 131
 ($context["filter"] ?? null) == "medium")) {
                     yield "No medium priority tickets
                         ";
-                } elseif ((                // line 124
+                } elseif ((                // line 132
 ($context["filter"] ?? null) == "low")) {
                     yield "No low priority tickets
                         ";
                 } else {
-                    // line 125
-                    yield "No tickets created yet";
-                }
-                // line 126
-                yield "                    ";
-            }
-            // line 127
-            yield "                </h3>
-                <p class=\"empty-subtitle\">
-                    ";
-            // line 129
-            if ((($tmp = ($context["search"] ?? null)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-                // line 130
-                yield "                        Try adjusting your search terms or clear the search
-                    ";
-            } else {
-                // line 132
-                yield "                        ";
-                if ((($context["filter"] ?? null) == "all")) {
-                    yield "Get started by creating your first ticket
-                        ";
-                } else {
                     // line 133
-                    yield "All tickets are filtered out or none match the current filter";
+                    yield "No tickets created yet";
                 }
                 // line 134
                 yield "                    ";
             }
             // line 135
+            yield "                </h3>
+                <p class=\"empty-subtitle\">
+                    ";
+            // line 137
+            if ((($tmp = ($context["search"] ?? null)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+                // line 138
+                yield "                        Try adjusting your search terms or clear the search
+                    ";
+            } else {
+                // line 140
+                yield "                        ";
+                if ((($context["filter"] ?? null) == "all")) {
+                    yield "Get started by creating your first ticket
+                        ";
+                } else {
+                    // line 141
+                    yield "All tickets are filtered out or none match the current filter";
+                }
+                // line 142
+                yield "                    ";
+            }
+            // line 143
             yield "                </p>
                 ";
-            // line 136
+            // line 144
             if (((($context["filter"] ?? null) == "all") &&  !($context["search"] ?? null))) {
-                // line 137
-                yield "                    <a href=\"/tickets/create\" class=\"empty-action-btn\">
+                // line 145
+                yield "                    <button onclick=\"openCreateTicketModal()\" class=\"empty-action-btn\">
                         Create Your First Ticket
-                    </a>
+                    </button>
                 ";
             }
-            // line 141
+            // line 149
             yield "            </div>
         ";
         } else {
-            // line 143
-            yield "            <div class=\"tickets-grid\">
+            // line 151
+            yield "            <div class=\"tickets-grid\" id=\"ticketsGrid\">
                 ";
-            // line 144
+            // line 152
             $context['_parent'] = $context;
             $context['_seq'] = CoreExtension::ensureTraversable(($context["tickets"] ?? null));
             foreach ($context['_seq'] as $context["_key"] => $context["ticket"]) {
-                // line 145
+                // line 153
                 yield "                    <div class=\"ticket-card\" data-ticket-id=\"";
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 145), "html", null, true);
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 153), "html", null, true);
+                yield "\" data-status=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 153), "html", null, true);
+                yield "\" data-priority=\"";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "priority", [], "any", false, false, false, 153), "html", null, true);
                 yield "\">
                         <!-- Header -->
                         <div class=\"ticket-header\">
                             <div class=\"ticket-title-section\">
                                 <h3 class=\"ticket-title\">";
-                // line 149
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "title", [], "any", false, false, false, 149), "html", null, true);
+                // line 157
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "title", [], "any", false, false, false, 157), "html", null, true);
                 yield "</h3>
                                 <div class=\"ticket-meta\">
                                     <span class=\"ticket-id\">#";
-                // line 151
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 151),  -6), "html", null, true);
+                // line 159
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 159),  -6), "html", null, true);
                 yield "</span>
                                     <span class=\"ticket-date\">";
-                // line 152
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "createdAt", [], "any", false, false, false, 152), "M j, Y"), "html", null, true);
+                // line 160
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "createdAt", [], "any", false, false, false, 160), "M j, Y"), "html", null, true);
                 yield "</span>
                                 </div>
                             </div>
                             <div class=\"ticket-actions\">
-                                <a href=\"/tickets/edit/";
-                // line 156
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 156), "html", null, true);
-                yield "\" class=\"action-btn edit-btn\" title=\"Edit ticket\">
+                                <button onclick=\"editTicket('";
+                // line 164
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 164), "html", null, true);
+                yield "')\" class=\"action-btn edit-btn\" title=\"Edit ticket\">
                                     ✏️
-                                </a>
-                                ";
-                // line 162
-                yield "                            </div>
+                                </button>
+                                <button onclick=\"confirmDelete('";
+                // line 167
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "id", [], "any", false, false, false, 167), "html", null, true);
+                yield "', '";
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "title", [], "any", false, false, false, 167), "js"), "html", null, true);
+                yield "')\" class=\"action-btn delete-btn\" title=\"Delete ticket\">
+                                    🗑️
+                                </button>
+                            </div>
                         </div>
 
                         <!-- Description -->
                         ";
-                // line 166
-                if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 166)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
-                    // line 167
+                // line 174
+                if ((($tmp = CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 174)) && $tmp instanceof Markup ? (string) $tmp : $tmp)) {
+                    // line 175
                     yield "                            <p class=\"ticket-description\">
                                 ";
-                    // line 168
-                    yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 168)) > 120)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 168), 0, 120) . "..."), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 168), "html", null, true)));
+                    // line 176
+                    yield (((Twig\Extension\CoreExtension::length($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 176)) > 120)) ? ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape((Twig\Extension\CoreExtension::slice($this->env->getCharset(), CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 176), 0, 120) . "..."), "html", null, true)) : ($this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "description", [], "any", false, false, false, 176), "html", null, true)));
                     yield "
                             </p>
                         ";
                 }
-                // line 171
+                // line 179
                 yield "
                         <!-- Status and Priority -->
                         <div class=\"ticket-tags\">
                             <span 
                                 class=\"status-tag\"
                                 style=\"";
-                // line 176
-                yield $this->getTemplateForMacro("macro_getStatusStyle", $context, 176, $this->getSourceContext())->macro_getStatusStyle(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 176)]);
+                // line 184
+                yield $this->getTemplateForMacro("macro_getStatusStyle", $context, 184, $this->getSourceContext())->macro_getStatusStyle(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 184)]);
                 yield "\"
                             >
                                 ";
-                // line 178
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::replace(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 178), ["_" => " "]), "html", null, true);
+                // line 186
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(Twig\Extension\CoreExtension::replace(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 186), ["_" => " "]), "html", null, true);
                 yield "
                             </span>
                             <span 
                                 class=\"priority-tag\"
                                 style=\"";
-                // line 182
-                yield $this->getTemplateForMacro("macro_getPriorityStyle", $context, 182, $this->getSourceContext())->macro_getPriorityStyle(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "priority", [], "any", false, false, false, 182)]);
+                // line 190
+                yield $this->getTemplateForMacro("macro_getPriorityStyle", $context, 190, $this->getSourceContext())->macro_getPriorityStyle(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "priority", [], "any", false, false, false, 190)]);
                 yield "\"
                             >
                                 ";
-                // line 184
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "priority", [], "any", false, false, false, 184), "html", null, true);
+                // line 192
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "priority", [], "any", false, false, false, 192), "html", null, true);
                 yield " priority
                             </span>
                         </div>
@@ -423,8 +466,8 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
                         <div 
                             class=\"status-indicator\"
                             style=\"background-color: ";
-                // line 191
-                yield $this->getTemplateForMacro("macro_getStatusColor", $context, 191, $this->getSourceContext())->macro_getStatusColor(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 191)]);
+                // line 199
+                yield $this->getTemplateForMacro("macro_getStatusColor", $context, 199, $this->getSourceContext())->macro_getStatusColor(...[CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "status", [], "any", false, false, false, 199)]);
                 yield "\"
                         ></div>
 
@@ -433,35 +476,28 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
                             <div class=\"assignee\">
                                 <span class=\"assignee-label\">Assigned to:</span>
                                 <span class=\"assignee-name\">";
-                // line 198
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "assignee", [], "any", false, false, false, 198), "html", null, true);
+                // line 206
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "assignee", [], "any", false, false, false, 206), "html", null, true);
                 yield "</span>
                             </div>
                             <div class=\"ticket-updated\">
                                 Updated ";
-                // line 201
-                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "updatedAt", [], "any", false, false, false, 201), "M j, Y"), "html", null, true);
+                // line 209
+                yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape($this->extensions['Twig\Extension\CoreExtension']->formatDate(CoreExtension::getAttribute($this->env, $this->source, $context["ticket"], "updatedAt", [], "any", false, false, false, 209), "M j, Y"), "html", null, true);
                 yield "
                             </div>
                         </div>
-
-                        <!-- Status Indicator -->
-                        <div 
-                            class=\"status-indicator\"
-                            ";
-                // line 209
-                yield "                        ></div>
                     </div>
                 ";
             }
             $_parent = $context['_parent'];
             unset($context['_seq'], $context['_key'], $context['ticket'], $context['_parent']);
             $context = array_intersect_key($context, $_parent) + $_parent;
-            // line 212
+            // line 214
             yield "            </div>
         ";
         }
-        // line 214
+        // line 216
         yield "    </div>
 </div>
 
@@ -470,14 +506,109 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     <div class=\"modal-content\">
         <div class=\"modal-header\">
             <h3>Delete Ticket</h3>
-            <button onclick=\"closeModal()\" class=\"close-btn\">×</button>
+            <button onclick=\"closeDeleteModal()\" class=\"close-btn\">×</button>
         </div>
         <div class=\"modal-body\">
             <p id=\"deleteMessage\">Are you sure you want to delete this ticket? This action cannot be undone.</p>
         </div>
         <div class=\"modal-actions\">
-            <button onclick=\"closeModal()\" class=\"btn btn-secondary\">Cancel</button>
+            <button onclick=\"closeDeleteModal()\" class=\"btn btn-secondary\">Cancel</button>
             <button onclick=\"deleteTicket()\" class=\"btn btn-danger\">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- Create/Edit Ticket Modal -->
+<div id=\"ticketModal\" class=\"modal\" style=\"display: none;\">
+    <div class=\"modal-content ticket-modal-content\">
+        <div class=\"ticket-form-page\">
+            <div class=\"form-container\">
+                <div class=\"form-card\">
+                    <!-- Header -->
+                    <div class=\"form-header\">
+                        <h2 id=\"ticketModalTitle\">Create Ticket</h2>
+                        <button onclick=\"closeTicketModal()\" class=\"close-btn\">×</button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id=\"ticketForm\" class=\"ticket-form\">
+                        <input type=\"hidden\" id=\"ticketId\" name=\"id\" value=\"\">
+                        
+                        <div class=\"form-group\">
+                            <label for=\"title\" class=\"form-label\">Title *</label>
+                            <input
+                                type=\"text\"
+                                id=\"title\"
+                                name=\"title\"
+                                class=\"form-input\"
+                                placeholder=\"Enter ticket title\"
+                                value=\"\"
+                                required
+                            />
+                        </div>
+
+                        <div class=\"form-group\">
+                            <label for=\"description\" class=\"form-label\">Description</label>
+                            <textarea
+                                id=\"description\"
+                                name=\"description\"
+                                class=\"form-textarea\"
+                                placeholder=\"Describe the issue or request...\"
+                                rows=\"4\"
+                            ></textarea>
+                        </div>
+
+                        <div class=\"form-row\">
+                            <div class=\"form-group\">
+                                <label for=\"status\" class=\"form-label\">Status *</label>
+                                <select
+                                    id=\"status\"
+                                    name=\"status\"
+                                    class=\"form-select\"
+                                    required
+                                >
+                                    <option value=\"open\">Open</option>
+                                    <option value=\"in_progress\">In Progress</option>
+                                    <option value=\"closed\">Closed</option>
+                                </select>
+                            </div>
+
+                            <div class=\"form-group\">
+                                <label for=\"priority\" class=\"form-label\">Priority</label>
+                                <select
+                                    id=\"priority\"
+                                    name=\"priority\"
+                                    class=\"form-select\"
+                                >
+                                    <option value=\"low\">Low</option>
+                                    <option value=\"medium\" selected>Medium</option>
+                                    <option value=\"high\">High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class=\"form-group\">
+                            <label for=\"assignee\" class=\"form-label\">Assignee</label>
+                            <input
+                                type=\"text\"
+                                id=\"assignee\"
+                                name=\"assignee\"
+                                class=\"form-input\"
+                                placeholder=\"Assign to team member\"
+                                value=\"Unassigned\"
+                            />
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class=\"form-actions\">
+                            <button type=\"button\" onclick=\"closeTicketModal()\" class=\"btn btn-secondary\">Cancel</button>
+                            <button type=\"submit\" class=\"btn btn-primary\">
+                                Create Ticket
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -556,6 +687,8 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .modal-content {
@@ -565,8 +698,15 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     max-width: 400px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     animation: modalSlideIn 0.3s ease;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.ticket-modal-content {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes modalSlideIn {
@@ -579,51 +719,7 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
         transform: translateY(0);
     }
 }
-.btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-}
 
-.btn-secondary {
-    background: #f8f9fa;
-    color: var(--text-primary);
-    border: 2px solid #e9ecef;
-}
-
-.btn-secondary:hover {
-    background: #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-    transform: translateY(-1px);
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-secondary);
-    padding: 0.25rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background: #f8f9fa;
-    color: var(--text-primary);
-}
 .tickets-page {
     min-height: 100vh;
     padding-bottom: 2rem;
@@ -898,73 +994,6 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     transform: translateY(-2px);
 }
 
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.modal-header h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-.modal-body p {
-    margin: 0;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    text-align: center;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-}
-
 /* Filters */
 .tickets-filters {
     background: white;
@@ -1082,6 +1111,110 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     color: var(--text-secondary);
 }
 
+/* Form Styles */
+.ticket-form-page {
+    width: 100%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 2rem 0;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #5a6fd8);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .tickets-grid {
@@ -1108,8 +1241,12 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
         justify-content: center;
     }
     
+    .modal {
+        padding: 1rem;
+    }
+    
     .modal-content {
-        margin: 1rem;
+        margin: 0;
     }
     
     .modal-actions {
@@ -1123,6 +1260,18 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
     .filter-tab {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }
 
@@ -1159,11 +1308,64 @@ class __TwigTemplate_f3c6f1a0099e796e162e2cf5ca16fa64 extends Template
         min-width: 100px;
         justify-content: center;
     }
+    
+    .form-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .ticket-form {
+        padding: 0 1rem 1rem;
+    }
+    
+    .form-header {
+        padding: 1rem 1rem 0;
+    }
 }
 </style>
 
 <script>
 let currentTicketId = null;
+let tickets = ";
+        // line 1045
+        yield json_encode(($context["tickets"] ?? null));
+        yield ";
+
+// Initialize tickets in localStorage if not present
+function initializeTickets() {
+    if (!localStorage.getItem('tickets')) {
+        localStorage.setItem('tickets', JSON.stringify(tickets));
+    }
+    return JSON.parse(localStorage.getItem('tickets'));
+}
+
+// Update filter counts
+function updateFilterCounts() {
+    const allTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    const counts = {
+        all: allTickets.length,
+        open: allTickets.filter(t => t.status === 'open').length,
+        in_progress: allTickets.filter(t => t.status === 'in_progress').length,
+        closed: allTickets.filter(t => t.status === 'closed').length,
+        high: allTickets.filter(t => t.priority === 'high').length,
+        medium: allTickets.filter(t => t.priority === 'medium').length,
+        low: allTickets.filter(t => t.priority === 'low').length
+    };
+
+    // Update all filter tab counts
+    Object.keys(counts).forEach(filter => {
+        const tab = document.querySelector(`[data-filter=\"\${filter}\"]`);
+        if (tab) {
+            const countElement = tab.querySelector('.filter-count');
+            if (countElement) {
+                countElement.textContent = counts[filter];
+            }
+            tab.setAttribute('data-count', counts[filter]);
+        }
+    });
+}
 
 function getStatusColor(status) {
     switch (status) {
@@ -1206,26 +1408,58 @@ function clearSearch() {
 }
 
 function openCreateTicketModal() {
-    // This would open your create ticket modal
-    // You'll need to implement this based on your existing modal structure
-    console.log('Open create ticket modal');
-    // Example: document.getElementById('createTicketModal').style.display = 'flex';
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type=\"submit\"]');
+    
+    // Reset form
+    form.reset();
+    document.getElementById('ticketId').value = '';
+    document.getElementById('assignee').value = 'Unassigned';
+    document.getElementById('priority').value = 'medium';
+    document.getElementById('status').value = 'open';
+    
+    // Update UI
+    title.textContent = 'Create Ticket';
+    submitBtn.textContent = 'Create Ticket';
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-";
-        // line 971
-        yield "
-";
-        // line 977
-        yield "
-";
-        // line 1004
-        yield "
-let currentTicketId = null;
-let tickets = ";
-        // line 1006
-        yield json_encode(($context["tickets"] ?? null));
-        yield "; // Assuming tickets are passed from backend
+function editTicket(ticketId) {
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type=\"submit\"]');
+    
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const ticket = tickets.find(t => t.id === ticketId);
+    
+    if (ticket) {
+        // Populate form
+        document.getElementById('ticketId').value = ticket.id;
+        document.getElementById('title').value = ticket.title;
+        document.getElementById('description').value = ticket.description || '';
+        document.getElementById('status').value = ticket.status;
+        document.getElementById('priority').value = ticket.priority;
+        document.getElementById('assignee').value = ticket.assignee;
+        
+        // Update UI
+        title.textContent = 'Edit Ticket';
+        submitBtn.textContent = 'Update Ticket';
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeTicketModal() {
+    const modal = document.getElementById('ticketModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
 function confirmDelete(ticketId, ticketTitle) {
     currentTicketId = ticketId;
@@ -1233,36 +1467,104 @@ function confirmDelete(ticketId, ticketTitle) {
     const message = document.getElementById('deleteMessage');
     message.textContent = `Are you sure you want to delete \"\${ticketTitle}\"? This action cannot be undone.`;
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
+function closeDeleteModal() {
     const modal = document.getElementById('deleteModal');
     modal.style.display = 'none';
     currentTicketId = null;
+    document.body.style.overflow = 'auto';
 }
 
 function deleteTicket() {
     if (currentTicketId) {
-        // Frontend deletion - remove from DOM
+        // Remove from localStorage
+        const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+        const updatedTickets = tickets.filter(ticket => ticket.id !== currentTicketId);
+        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        
+        // Remove from DOM
         const ticketElement = document.querySelector(`[data-ticket-id=\"\${currentTicketId}\"]`);
         if (ticketElement) {
             ticketElement.remove();
         }
         
-        // If you want to persist in localStorage (optional)
-        const savedTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        const updatedTickets = savedTickets.filter(ticket => ticket.id !== currentTicketId);
-        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        // Update filter counts
+        updateFilterCounts();
         
-        closeModal();
-        
-        // Show success message or update UI
+        closeDeleteModal();
         showNotification('Ticket deleted successfully', 'success');
+        
+        // Check if grid is empty and show empty state
+        const ticketsGrid = document.getElementById('ticketsGrid');
+        if (ticketsGrid && ticketsGrid.children.length === 0) {
+            showEmptyState();
+        }
     }
 }
 
+function showEmptyState() {
+    const ticketsContent = document.querySelector('.tickets-content');
+    const emptyStateHTML = `
+        <div class=\"empty-state\">
+            <div class=\"empty-icon\">🎫</div>
+            <h3 class=\"empty-title\">No tickets found</h3>
+            <p class=\"empty-subtitle\">Get started by creating your first ticket</p>
+            <button onclick=\"openCreateTicketModal()\" class=\"empty-action-btn\">
+                Create Your First Ticket
+            </button>
+        </div>
+    `;
+    ticketsContent.innerHTML = emptyStateHTML;
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const ticketData = {
+        id: formData.get('id') || generateId(),
+        title: formData.get('title'),
+        description: formData.get('description'),
+        status: formData.get('status'),
+        priority: formData.get('priority'),
+        assignee: formData.get('assignee'),
+        createdAt: formData.get('id') ? undefined : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+    
+    // Get existing tickets
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    if (formData.get('id')) {
+        // Update existing ticket
+        const index = tickets.findIndex(t => t.id === formData.get('id'));
+        if (index !== -1) {
+            tickets[index] = { ...tickets[index], ...ticketData };
+            showNotification('Ticket updated successfully', 'success');
+        }
+    } else {
+        // Create new ticket
+        tickets.push(ticketData);
+        showNotification('Ticket created successfully', 'success');
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('tickets', JSON.stringify(tickets));
+    
+    // Close modal and reload to show changes
+    closeTicketModal();
+    setTimeout(() => {
+        //window.location.reload();
+    }, 1000);
+}
+
+function generateId() {
+    return 'ticket_' + Math.random().toString(36).substr(2, 9);
+}
+
 function showNotification(message, type) {
-    // Simple notification implementation
     const notification = document.createElement('div');
     notification.className = `notification \${type}`;
     notification.textContent = message;
@@ -1275,11 +1577,16 @@ function showNotification(message, type) {
         color: white;
         border-radius: 8px;
         z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     `;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.remove();
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
@@ -1294,17 +1601,37 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
         url.searchParams.delete('search');
     }
     
-    // Debounce the search
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
         window.location.href = url.toString();
     }, 500);
 });
 
-// Close modal on overlay click
-document.getElementById('deleteModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
+// Close modals on overlay click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Close modals on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTickets();
+    updateFilterCounts();
+    
+    // Add form submit handler
+    const ticketForm = document.getElementById('ticketForm');
+    if (ticketForm) {
+        ticketForm.addEventListener('submit', handleFormSubmit);
     }
 });
 </script>
@@ -1312,7 +1639,7 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         yield from [];
     }
 
-    // line 1091
+    // line 1352
     public function macro_getStatusColor($status = null, ...$varargs): string|Markup
     {
         $macros = $this->macros;
@@ -1324,28 +1651,28 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         $blocks = [];
 
         return ('' === $tmp = \Twig\Extension\CoreExtension::captureOutput((function () use (&$context, $macros, $blocks) {
-            // line 1092
+            // line 1353
             yield "    ";
             if ((($context["status"] ?? null) == "open")) {
                 yield "#2ecc71
     ";
-            } elseif ((            // line 1093
+            } elseif ((            // line 1354
 ($context["status"] ?? null) == "in_progress")) {
                 yield "#f39c12
     ";
-            } elseif ((            // line 1094
+            } elseif ((            // line 1355
 ($context["status"] ?? null) == "closed")) {
                 yield "#95a5a6
     ";
             } else {
-                // line 1095
+                // line 1356
                 yield "#bdc3c7";
             }
             yield from [];
         })())) ? '' : new Markup($tmp, $this->env->getCharset());
     }
 
-    // line 1098
+    // line 1359
     public function macro_getStatusStyle($status = null, ...$varargs): string|Markup
     {
         $macros = $this->macros;
@@ -1357,10 +1684,10 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         $blocks = [];
 
         return ('' === $tmp = \Twig\Extension\CoreExtension::captureOutput((function () use (&$context, $macros, $blocks) {
-            // line 1099
+            // line 1360
             yield "    ";
-            $context["color"] = $this->getTemplateForMacro("macro_getStatusColor", $context, 1099, $this->getSourceContext())->macro_getStatusColor(...[($context["status"] ?? null)]);
-            // line 1100
+            $context["color"] = $this->getTemplateForMacro("macro_getStatusColor", $context, 1360, $this->getSourceContext())->macro_getStatusColor(...[($context["status"] ?? null)]);
+            // line 1361
             yield "    background-color: ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["color"] ?? null), "html", null, true);
             yield "20; color: ";
@@ -1373,7 +1700,7 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         })())) ? '' : new Markup($tmp, $this->env->getCharset());
     }
 
-    // line 1103
+    // line 1364
     public function macro_getPriorityColor($priority = null, ...$varargs): string|Markup
     {
         $macros = $this->macros;
@@ -1385,28 +1712,28 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         $blocks = [];
 
         return ('' === $tmp = \Twig\Extension\CoreExtension::captureOutput((function () use (&$context, $macros, $blocks) {
-            // line 1104
+            // line 1365
             yield "    ";
             if ((($context["priority"] ?? null) == "high")) {
                 yield "#e74c3c
     ";
-            } elseif ((            // line 1105
+            } elseif ((            // line 1366
 ($context["priority"] ?? null) == "medium")) {
                 yield "#f39c12
     ";
-            } elseif ((            // line 1106
+            } elseif ((            // line 1367
 ($context["priority"] ?? null) == "low")) {
                 yield "#27ae60
     ";
             } else {
-                // line 1107
+                // line 1368
                 yield "#95a5a6";
             }
             yield from [];
         })())) ? '' : new Markup($tmp, $this->env->getCharset());
     }
 
-    // line 1110
+    // line 1371
     public function macro_getPriorityStyle($priority = null, ...$varargs): string|Markup
     {
         $macros = $this->macros;
@@ -1418,10 +1745,10 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         $blocks = [];
 
         return ('' === $tmp = \Twig\Extension\CoreExtension::captureOutput((function () use (&$context, $macros, $blocks) {
-            // line 1111
+            // line 1372
             yield "    ";
-            $context["color"] = $this->getTemplateForMacro("macro_getPriorityColor", $context, 1111, $this->getSourceContext())->macro_getPriorityColor(...[($context["priority"] ?? null)]);
-            // line 1112
+            $context["color"] = $this->getTemplateForMacro("macro_getPriorityColor", $context, 1372, $this->getSourceContext())->macro_getPriorityColor(...[($context["priority"] ?? null)]);
+            // line 1373
             yield "    background-color: ";
             yield $this->env->getRuntime('Twig\Runtime\EscaperRuntime')->escape(($context["color"] ?? null), "html", null, true);
             yield "20; color: ";
@@ -1455,7 +1782,7 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
      */
     public function getDebugInfo(): array
     {
-        return array (  1425 => 1112,  1422 => 1111,  1410 => 1110,  1403 => 1107,  1398 => 1106,  1394 => 1105,  1389 => 1104,  1377 => 1103,  1364 => 1100,  1361 => 1099,  1349 => 1098,  1342 => 1095,  1337 => 1094,  1333 => 1093,  1328 => 1092,  1316 => 1091,  1227 => 1006,  1223 => 1004,  1220 => 977,  1217 => 971,  465 => 214,  461 => 212,  453 => 209,  443 => 201,  437 => 198,  427 => 191,  417 => 184,  412 => 182,  405 => 178,  400 => 176,  393 => 171,  387 => 168,  384 => 167,  382 => 166,  376 => 162,  370 => 156,  363 => 152,  359 => 151,  354 => 149,  346 => 145,  342 => 144,  339 => 143,  335 => 141,  329 => 137,  327 => 136,  324 => 135,  321 => 134,  318 => 133,  312 => 132,  308 => 130,  306 => 129,  302 => 127,  299 => 126,  296 => 125,  291 => 124,  287 => 123,  283 => 122,  279 => 121,  275 => 120,  270 => 119,  264 => 117,  262 => 116,  257 => 113,  255 => 112,  245 => 105,  237 => 102,  230 => 98,  222 => 95,  215 => 91,  207 => 88,  200 => 84,  192 => 81,  185 => 77,  177 => 74,  170 => 70,  162 => 67,  155 => 63,  147 => 60,  142 => 57,  139 => 56,  136 => 55,  133 => 54,  130 => 53,  127 => 52,  124 => 51,  122 => 50,  115 => 45,  111 => 43,  109 => 42,  103 => 39,  89 => 27,  73 => 7,  66 => 6,  55 => 3,  50 => 1,  48 => 4,  41 => 1,);
+        return array (  1752 => 1373,  1749 => 1372,  1737 => 1371,  1730 => 1368,  1725 => 1367,  1721 => 1366,  1716 => 1365,  1704 => 1364,  1691 => 1361,  1688 => 1360,  1676 => 1359,  1669 => 1356,  1664 => 1355,  1660 => 1354,  1655 => 1353,  1643 => 1352,  1332 => 1045,  501 => 216,  497 => 214,  486 => 209,  480 => 206,  470 => 199,  460 => 192,  455 => 190,  448 => 186,  443 => 184,  436 => 179,  430 => 176,  427 => 175,  425 => 174,  413 => 167,  407 => 164,  400 => 160,  396 => 159,  391 => 157,  379 => 153,  375 => 152,  372 => 151,  368 => 149,  362 => 145,  360 => 144,  357 => 143,  354 => 142,  351 => 141,  345 => 140,  341 => 138,  339 => 137,  335 => 135,  332 => 134,  329 => 133,  324 => 132,  320 => 131,  316 => 130,  312 => 129,  308 => 128,  303 => 127,  297 => 125,  295 => 124,  290 => 121,  288 => 120,  278 => 113,  272 => 110,  265 => 108,  258 => 104,  252 => 101,  245 => 99,  238 => 95,  232 => 92,  225 => 90,  218 => 86,  212 => 83,  205 => 81,  198 => 77,  192 => 74,  185 => 72,  178 => 68,  172 => 65,  165 => 63,  158 => 59,  152 => 56,  145 => 54,  140 => 51,  137 => 50,  134 => 49,  131 => 48,  128 => 47,  125 => 46,  122 => 45,  120 => 44,  113 => 39,  109 => 37,  107 => 36,  101 => 33,  73 => 7,  66 => 6,  55 => 3,  50 => 1,  48 => 4,  41 => 1,);
     }
 
     public function getSourceContext(): Source
@@ -1480,12 +1807,6 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <span class=\"btn-icon\">➕</span>
             Create Ticket
         </button>
-{#         
-        <a href=\"/tickets/create\" class=\"create-ticket-btn\">
-        
-            <span class=\"btn-icon\">➕</span>
-            Create Ticket
-        </a> #}
     </div>
 
     <!-- Filters and Search -->
@@ -1508,7 +1829,7 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         </div>
 
         <!-- Filter Tabs -->
-        <div class=\"filter-tabs\">
+        <div class=\"filter-tabs\" id=\"filterTabs\">
             {% set allTicketsCount = tickets|length %}
             {% set openTicketsCount = tickets|filter(t => t.status == 'open')|length %}
             {% set inProgressTicketsCount = tickets|filter(t => t.status == 'in_progress')|length %}
@@ -1520,6 +1841,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('all')\"
                 class=\"filter-tab {% if filter == 'all' %}active{% endif %}\"
+                data-filter=\"all\"
+                data-count=\"{{ allTicketsCount }}\"
             >
                 <span class=\"filter-label\">All Tickets</span>
                 <span class=\"filter-count\">{{ allTicketsCount }}</span>
@@ -1527,6 +1850,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('open')\"
                 class=\"filter-tab {% if filter == 'open' %}active{% endif %}\"
+                data-filter=\"open\"
+                data-count=\"{{ openTicketsCount }}\"
             >
                 <span class=\"filter-label\">Open</span>
                 <span class=\"filter-count\">{{ openTicketsCount }}</span>
@@ -1534,6 +1859,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('in_progress')\"
                 class=\"filter-tab {% if filter == 'in_progress' %}active{% endif %}\"
+                data-filter=\"in_progress\"
+                data-count=\"{{ inProgressTicketsCount }}\"
             >
                 <span class=\"filter-label\">In Progress</span>
                 <span class=\"filter-count\">{{ inProgressTicketsCount }}</span>
@@ -1541,6 +1868,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('closed')\"
                 class=\"filter-tab {% if filter == 'closed' %}active{% endif %}\"
+                data-filter=\"closed\"
+                data-count=\"{{ closedTicketsCount }}\"
             >
                 <span class=\"filter-label\">Closed</span>
                 <span class=\"filter-count\">{{ closedTicketsCount }}</span>
@@ -1548,6 +1877,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('high')\"
                 class=\"filter-tab {% if filter == 'high' %}active{% endif %}\"
+                data-filter=\"high\"
+                data-count=\"{{ highPriorityCount }}\"
             >
                 <span class=\"filter-label\">High Priority</span>
                 <span class=\"filter-count\">{{ highPriorityCount }}</span>
@@ -1555,6 +1886,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('medium')\"
                 class=\"filter-tab {% if filter == 'medium' %}active{% endif %}\"
+                data-filter=\"medium\"
+                data-count=\"{{ mediumPriorityCount }}\"
             >
                 <span class=\"filter-label\">Medium Priority</span>
                 <span class=\"filter-count\">{{ mediumPriorityCount }}</span>
@@ -1562,6 +1895,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
             <button
                 onclick=\"setFilter('low')\"
                 class=\"filter-tab {% if filter == 'low' %}active{% endif %}\"
+                data-filter=\"low\"
+                data-count=\"{{ lowPriorityCount }}\"
             >
                 <span class=\"filter-label\">Low Priority</span>
                 <span class=\"filter-count\">{{ lowPriorityCount }}</span>
@@ -1596,15 +1931,15 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
                     {% endif %}
                 </p>
                 {% if filter == 'all' and not search %}
-                    <a href=\"/tickets/create\" class=\"empty-action-btn\">
+                    <button onclick=\"openCreateTicketModal()\" class=\"empty-action-btn\">
                         Create Your First Ticket
-                    </a>
+                    </button>
                 {% endif %}
             </div>
         {% else %}
-            <div class=\"tickets-grid\">
+            <div class=\"tickets-grid\" id=\"ticketsGrid\">
                 {% for ticket in tickets %}
-                    <div class=\"ticket-card\" data-ticket-id=\"{{ ticket.id }}\">
+                    <div class=\"ticket-card\" data-ticket-id=\"{{ ticket.id }}\" data-status=\"{{ ticket.status }}\" data-priority=\"{{ ticket.priority }}\">
                         <!-- Header -->
                         <div class=\"ticket-header\">
                             <div class=\"ticket-title-section\">
@@ -1615,12 +1950,12 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
                                 </div>
                             </div>
                             <div class=\"ticket-actions\">
-                                <a href=\"/tickets/edit/{{ ticket.id }}\" class=\"action-btn edit-btn\" title=\"Edit ticket\">
+                                <button onclick=\"editTicket('{{ ticket.id }}')\" class=\"action-btn edit-btn\" title=\"Edit ticket\">
                                     ✏️
-                                </a>
-                                {# <button onclick=\"confirmDelete('{{ ticket.id }}', '{{ ticket.title|e('js') }}')\" class=\"action-btn delete-btn\" title=\"Delete ticket\">
+                                </button>
+                                <button onclick=\"confirmDelete('{{ ticket.id }}', '{{ ticket.title|e('js') }}')\" class=\"action-btn delete-btn\" title=\"Delete ticket\">
                                     🗑️
-                                </button> #}
+                                </button>
                             </div>
                         </div>
 
@@ -1663,12 +1998,6 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
                                 Updated {{ ticket.updatedAt|date('M j, Y') }}
                             </div>
                         </div>
-
-                        <!-- Status Indicator -->
-                        <div 
-                            class=\"status-indicator\"
-                            {# style=\"background-color: {{ getStatusColor(ticket.status) }}\" #}
-                        ></div>
                     </div>
                 {% endfor %}
             </div>
@@ -1681,14 +2010,109 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     <div class=\"modal-content\">
         <div class=\"modal-header\">
             <h3>Delete Ticket</h3>
-            <button onclick=\"closeModal()\" class=\"close-btn\">×</button>
+            <button onclick=\"closeDeleteModal()\" class=\"close-btn\">×</button>
         </div>
         <div class=\"modal-body\">
             <p id=\"deleteMessage\">Are you sure you want to delete this ticket? This action cannot be undone.</p>
         </div>
         <div class=\"modal-actions\">
-            <button onclick=\"closeModal()\" class=\"btn btn-secondary\">Cancel</button>
+            <button onclick=\"closeDeleteModal()\" class=\"btn btn-secondary\">Cancel</button>
             <button onclick=\"deleteTicket()\" class=\"btn btn-danger\">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- Create/Edit Ticket Modal -->
+<div id=\"ticketModal\" class=\"modal\" style=\"display: none;\">
+    <div class=\"modal-content ticket-modal-content\">
+        <div class=\"ticket-form-page\">
+            <div class=\"form-container\">
+                <div class=\"form-card\">
+                    <!-- Header -->
+                    <div class=\"form-header\">
+                        <h2 id=\"ticketModalTitle\">Create Ticket</h2>
+                        <button onclick=\"closeTicketModal()\" class=\"close-btn\">×</button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id=\"ticketForm\" class=\"ticket-form\">
+                        <input type=\"hidden\" id=\"ticketId\" name=\"id\" value=\"\">
+                        
+                        <div class=\"form-group\">
+                            <label for=\"title\" class=\"form-label\">Title *</label>
+                            <input
+                                type=\"text\"
+                                id=\"title\"
+                                name=\"title\"
+                                class=\"form-input\"
+                                placeholder=\"Enter ticket title\"
+                                value=\"\"
+                                required
+                            />
+                        </div>
+
+                        <div class=\"form-group\">
+                            <label for=\"description\" class=\"form-label\">Description</label>
+                            <textarea
+                                id=\"description\"
+                                name=\"description\"
+                                class=\"form-textarea\"
+                                placeholder=\"Describe the issue or request...\"
+                                rows=\"4\"
+                            ></textarea>
+                        </div>
+
+                        <div class=\"form-row\">
+                            <div class=\"form-group\">
+                                <label for=\"status\" class=\"form-label\">Status *</label>
+                                <select
+                                    id=\"status\"
+                                    name=\"status\"
+                                    class=\"form-select\"
+                                    required
+                                >
+                                    <option value=\"open\">Open</option>
+                                    <option value=\"in_progress\">In Progress</option>
+                                    <option value=\"closed\">Closed</option>
+                                </select>
+                            </div>
+
+                            <div class=\"form-group\">
+                                <label for=\"priority\" class=\"form-label\">Priority</label>
+                                <select
+                                    id=\"priority\"
+                                    name=\"priority\"
+                                    class=\"form-select\"
+                                >
+                                    <option value=\"low\">Low</option>
+                                    <option value=\"medium\" selected>Medium</option>
+                                    <option value=\"high\">High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class=\"form-group\">
+                            <label for=\"assignee\" class=\"form-label\">Assignee</label>
+                            <input
+                                type=\"text\"
+                                id=\"assignee\"
+                                name=\"assignee\"
+                                class=\"form-input\"
+                                placeholder=\"Assign to team member\"
+                                value=\"Unassigned\"
+                            />
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class=\"form-actions\">
+                            <button type=\"button\" onclick=\"closeTicketModal()\" class=\"btn btn-secondary\">Cancel</button>
+                            <button type=\"submit\" class=\"btn btn-primary\">
+                                Create Ticket
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -1767,6 +2191,8 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .modal-content {
@@ -1776,8 +2202,15 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     max-width: 400px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     animation: modalSlideIn 0.3s ease;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.ticket-modal-content {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes modalSlideIn {
@@ -1790,51 +2223,7 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         transform: translateY(0);
     }
 }
-.btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-}
 
-.btn-secondary {
-    background: #f8f9fa;
-    color: var(--text-primary);
-    border: 2px solid #e9ecef;
-}
-
-.btn-secondary:hover {
-    background: #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-    transform: translateY(-1px);
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-secondary);
-    padding: 0.25rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background: #f8f9fa;
-    color: var(--text-primary);
-}
 .tickets-page {
     min-height: 100vh;
     padding-bottom: 2rem;
@@ -2109,73 +2498,6 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     transform: translateY(-2px);
 }
 
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.modal-header h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-.modal-body p {
-    margin: 0;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    text-align: center;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-}
-
 /* Filters */
 .tickets-filters {
     background: white;
@@ -2293,6 +2615,110 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     color: var(--text-secondary);
 }
 
+/* Form Styles */
+.ticket-form-page {
+    width: 100%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 2rem 0;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #5a6fd8);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .tickets-grid {
@@ -2319,8 +2745,12 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         justify-content: center;
     }
     
+    .modal {
+        padding: 1rem;
+    }
+    
     .modal-content {
-        margin: 1rem;
+        margin: 0;
     }
     
     .modal-actions {
@@ -2334,6 +2764,18 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
     .filter-tab {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }
 
@@ -2370,11 +2812,61 @@ document.getElementById('deleteModal')?.addEventListener('click', function(e) {
         min-width: 100px;
         justify-content: center;
     }
+    
+    .form-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .ticket-form {
+        padding: 0 1rem 1rem;
+    }
+    
+    .form-header {
+        padding: 1rem 1rem 0;
+    }
 }
 </style>
 
 <script>
 let currentTicketId = null;
+let tickets = {{ tickets|json_encode|raw }};
+
+// Initialize tickets in localStorage if not present
+function initializeTickets() {
+    if (!localStorage.getItem('tickets')) {
+        localStorage.setItem('tickets', JSON.stringify(tickets));
+    }
+    return JSON.parse(localStorage.getItem('tickets'));
+}
+
+// Update filter counts
+function updateFilterCounts() {
+    const allTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    const counts = {
+        all: allTickets.length,
+        open: allTickets.filter(t => t.status === 'open').length,
+        in_progress: allTickets.filter(t => t.status === 'in_progress').length,
+        closed: allTickets.filter(t => t.status === 'closed').length,
+        high: allTickets.filter(t => t.priority === 'high').length,
+        medium: allTickets.filter(t => t.priority === 'medium').length,
+        low: allTickets.filter(t => t.priority === 'low').length
+    };
+
+    // Update all filter tab counts
+    Object.keys(counts).forEach(filter => {
+        const tab = document.querySelector(`[data-filter=\"\${filter}\"]`);
+        if (tab) {
+            const countElement = tab.querySelector('.filter-count');
+            if (countElement) {
+                countElement.textContent = counts[filter];
+            }
+            tab.setAttribute('data-count', counts[filter]);
+        }
+    });
+}
 
 function getStatusColor(status) {
     switch (status) {
@@ -2417,55 +2909,58 @@ function clearSearch() {
 }
 
 function openCreateTicketModal() {
-    // This would open your create ticket modal
-    // You'll need to implement this based on your existing modal structure
-    console.log('Open create ticket modal');
-    // Example: document.getElementById('createTicketModal').style.display = 'flex';
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type=\"submit\"]');
+    
+    // Reset form
+    form.reset();
+    document.getElementById('ticketId').value = '';
+    document.getElementById('assignee').value = 'Unassigned';
+    document.getElementById('priority').value = 'medium';
+    document.getElementById('status').value = 'open';
+    
+    // Update UI
+    title.textContent = 'Create Ticket';
+    submitBtn.textContent = 'Create Ticket';
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-{# function confirmDelete(ticketId, ticketTitle) {
-    currentTicketId = ticketId;
-    const modal = document.getElementById('deleteModal');
-    const message = document.getElementById('deleteMessage');
-    message.textContent = `Are you sure you want to delete \"\${ticketTitle}\"? This action cannot be undone.`;
-    modal.style.display = 'flex';
-} #}
-
-{# function closeModal() {
-    const modal = document.getElementById('deleteModal');
-    modal.style.display = 'none';
-    currentTicketId = null;
-} #}
-
-{# function deleteTicket() {
-    if (currentTicketId) {
-        // Send DELETE request via fetch API
-        fetch(`/tickets/delete/\${currentTicketId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Reload the page to see updated ticket list
-                window.location.reload();
-            } else {
-                alert('Error deleting ticket');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error deleting ticket');
-        })
-        .finally(() => {
-            closeModal();
-        });
+function editTicket(ticketId) {
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type=\"submit\"]');
+    
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const ticket = tickets.find(t => t.id === ticketId);
+    
+    if (ticket) {
+        // Populate form
+        document.getElementById('ticketId').value = ticket.id;
+        document.getElementById('title').value = ticket.title;
+        document.getElementById('description').value = ticket.description || '';
+        document.getElementById('status').value = ticket.status;
+        document.getElementById('priority').value = ticket.priority;
+        document.getElementById('assignee').value = ticket.assignee;
+        
+        // Update UI
+        title.textContent = 'Edit Ticket';
+        submitBtn.textContent = 'Update Ticket';
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
-} #}
+}
 
-let currentTicketId = null;
-let tickets = {{ tickets|json_encode|raw }}; // Assuming tickets are passed from backend
+function closeTicketModal() {
+    const modal = document.getElementById('ticketModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
 function confirmDelete(ticketId, ticketTitle) {
     currentTicketId = ticketId;
@@ -2473,36 +2968,104 @@ function confirmDelete(ticketId, ticketTitle) {
     const message = document.getElementById('deleteMessage');
     message.textContent = `Are you sure you want to delete \"\${ticketTitle}\"? This action cannot be undone.`;
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
+function closeDeleteModal() {
     const modal = document.getElementById('deleteModal');
     modal.style.display = 'none';
     currentTicketId = null;
+    document.body.style.overflow = 'auto';
 }
 
 function deleteTicket() {
     if (currentTicketId) {
-        // Frontend deletion - remove from DOM
+        // Remove from localStorage
+        const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+        const updatedTickets = tickets.filter(ticket => ticket.id !== currentTicketId);
+        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        
+        // Remove from DOM
         const ticketElement = document.querySelector(`[data-ticket-id=\"\${currentTicketId}\"]`);
         if (ticketElement) {
             ticketElement.remove();
         }
         
-        // If you want to persist in localStorage (optional)
-        const savedTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        const updatedTickets = savedTickets.filter(ticket => ticket.id !== currentTicketId);
-        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        // Update filter counts
+        updateFilterCounts();
         
-        closeModal();
-        
-        // Show success message or update UI
+        closeDeleteModal();
         showNotification('Ticket deleted successfully', 'success');
+        
+        // Check if grid is empty and show empty state
+        const ticketsGrid = document.getElementById('ticketsGrid');
+        if (ticketsGrid && ticketsGrid.children.length === 0) {
+            showEmptyState();
+        }
     }
 }
 
+function showEmptyState() {
+    const ticketsContent = document.querySelector('.tickets-content');
+    const emptyStateHTML = `
+        <div class=\"empty-state\">
+            <div class=\"empty-icon\">🎫</div>
+            <h3 class=\"empty-title\">No tickets found</h3>
+            <p class=\"empty-subtitle\">Get started by creating your first ticket</p>
+            <button onclick=\"openCreateTicketModal()\" class=\"empty-action-btn\">
+                Create Your First Ticket
+            </button>
+        </div>
+    `;
+    ticketsContent.innerHTML = emptyStateHTML;
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const ticketData = {
+        id: formData.get('id') || generateId(),
+        title: formData.get('title'),
+        description: formData.get('description'),
+        status: formData.get('status'),
+        priority: formData.get('priority'),
+        assignee: formData.get('assignee'),
+        createdAt: formData.get('id') ? undefined : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+    
+    // Get existing tickets
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    if (formData.get('id')) {
+        // Update existing ticket
+        const index = tickets.findIndex(t => t.id === formData.get('id'));
+        if (index !== -1) {
+            tickets[index] = { ...tickets[index], ...ticketData };
+            showNotification('Ticket updated successfully', 'success');
+        }
+    } else {
+        // Create new ticket
+        tickets.push(ticketData);
+        showNotification('Ticket created successfully', 'success');
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('tickets', JSON.stringify(tickets));
+    
+    // Close modal and reload to show changes
+    closeTicketModal();
+    setTimeout(() => {
+        //window.location.reload();
+    }, 1000);
+}
+
+function generateId() {
+    return 'ticket_' + Math.random().toString(36).substr(2, 9);
+}
+
 function showNotification(message, type) {
-    // Simple notification implementation
     const notification = document.createElement('div');
     notification.className = `notification \${type}`;
     notification.textContent = message;
@@ -2515,11 +3078,16 @@ function showNotification(message, type) {
         color: white;
         border-radius: 8px;
         z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     `;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.remove();
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
@@ -2534,17 +3102,37 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
         url.searchParams.delete('search');
     }
     
-    // Debounce the search
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
         window.location.href = url.toString();
     }, 500);
 });
 
-// Close modal on overlay click
-document.getElementById('deleteModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
+// Close modals on overlay click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Close modals on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTickets();
+    updateFilterCounts();
+    
+    // Add form submit handler
+    const ticketForm = document.getElementById('ticketForm');
+    if (ticketForm) {
+        ticketForm.addEventListener('submit', handleFormSubmit);
     }
 });
 </script>

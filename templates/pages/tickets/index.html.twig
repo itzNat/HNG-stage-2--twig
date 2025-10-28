@@ -18,12 +18,6 @@
             <span class="btn-icon">➕</span>
             Create Ticket
         </button>
-{#         
-        <a href="/tickets/create" class="create-ticket-btn">
-        
-            <span class="btn-icon">➕</span>
-            Create Ticket
-        </a> #}
     </div>
 
     <!-- Filters and Search -->
@@ -46,7 +40,7 @@
         </div>
 
         <!-- Filter Tabs -->
-        <div class="filter-tabs">
+        <div class="filter-tabs" id="filterTabs">
             {% set allTicketsCount = tickets|length %}
             {% set openTicketsCount = tickets|filter(t => t.status == 'open')|length %}
             {% set inProgressTicketsCount = tickets|filter(t => t.status == 'in_progress')|length %}
@@ -58,6 +52,8 @@
             <button
                 onclick="setFilter('all')"
                 class="filter-tab {% if filter == 'all' %}active{% endif %}"
+                data-filter="all"
+                data-count="{{ allTicketsCount }}"
             >
                 <span class="filter-label">All Tickets</span>
                 <span class="filter-count">{{ allTicketsCount }}</span>
@@ -65,6 +61,8 @@
             <button
                 onclick="setFilter('open')"
                 class="filter-tab {% if filter == 'open' %}active{% endif %}"
+                data-filter="open"
+                data-count="{{ openTicketsCount }}"
             >
                 <span class="filter-label">Open</span>
                 <span class="filter-count">{{ openTicketsCount }}</span>
@@ -72,6 +70,8 @@
             <button
                 onclick="setFilter('in_progress')"
                 class="filter-tab {% if filter == 'in_progress' %}active{% endif %}"
+                data-filter="in_progress"
+                data-count="{{ inProgressTicketsCount }}"
             >
                 <span class="filter-label">In Progress</span>
                 <span class="filter-count">{{ inProgressTicketsCount }}</span>
@@ -79,6 +79,8 @@
             <button
                 onclick="setFilter('closed')"
                 class="filter-tab {% if filter == 'closed' %}active{% endif %}"
+                data-filter="closed"
+                data-count="{{ closedTicketsCount }}"
             >
                 <span class="filter-label">Closed</span>
                 <span class="filter-count">{{ closedTicketsCount }}</span>
@@ -86,6 +88,8 @@
             <button
                 onclick="setFilter('high')"
                 class="filter-tab {% if filter == 'high' %}active{% endif %}"
+                data-filter="high"
+                data-count="{{ highPriorityCount }}"
             >
                 <span class="filter-label">High Priority</span>
                 <span class="filter-count">{{ highPriorityCount }}</span>
@@ -93,6 +97,8 @@
             <button
                 onclick="setFilter('medium')"
                 class="filter-tab {% if filter == 'medium' %}active{% endif %}"
+                data-filter="medium"
+                data-count="{{ mediumPriorityCount }}"
             >
                 <span class="filter-label">Medium Priority</span>
                 <span class="filter-count">{{ mediumPriorityCount }}</span>
@@ -100,6 +106,8 @@
             <button
                 onclick="setFilter('low')"
                 class="filter-tab {% if filter == 'low' %}active{% endif %}"
+                data-filter="low"
+                data-count="{{ lowPriorityCount }}"
             >
                 <span class="filter-label">Low Priority</span>
                 <span class="filter-count">{{ lowPriorityCount }}</span>
@@ -134,15 +142,15 @@
                     {% endif %}
                 </p>
                 {% if filter == 'all' and not search %}
-                    <a href="/tickets/create" class="empty-action-btn">
+                    <button onclick="openCreateTicketModal()" class="empty-action-btn">
                         Create Your First Ticket
-                    </a>
+                    </button>
                 {% endif %}
             </div>
         {% else %}
-            <div class="tickets-grid">
+            <div class="tickets-grid" id="ticketsGrid">
                 {% for ticket in tickets %}
-                    <div class="ticket-card" data-ticket-id="{{ ticket.id }}">
+                    <div class="ticket-card" data-ticket-id="{{ ticket.id }}" data-status="{{ ticket.status }}" data-priority="{{ ticket.priority }}">
                         <!-- Header -->
                         <div class="ticket-header">
                             <div class="ticket-title-section">
@@ -153,12 +161,12 @@
                                 </div>
                             </div>
                             <div class="ticket-actions">
-                                <a href="/tickets/edit/{{ ticket.id }}" class="action-btn edit-btn" title="Edit ticket">
+                                <button onclick="editTicket('{{ ticket.id }}')" class="action-btn edit-btn" title="Edit ticket">
                                     ✏️
-                                </a>
-                                {# <button onclick="confirmDelete('{{ ticket.id }}', '{{ ticket.title|e('js') }}')" class="action-btn delete-btn" title="Delete ticket">
+                                </button>
+                                <button onclick="confirmDelete('{{ ticket.id }}', '{{ ticket.title|e('js') }}')" class="action-btn delete-btn" title="Delete ticket">
                                     🗑️
-                                </button> #}
+                                </button>
                             </div>
                         </div>
 
@@ -201,12 +209,6 @@
                                 Updated {{ ticket.updatedAt|date('M j, Y') }}
                             </div>
                         </div>
-
-                        <!-- Status Indicator -->
-                        <div 
-                            class="status-indicator"
-                            {# style="background-color: {{ getStatusColor(ticket.status) }}" #}
-                        ></div>
                     </div>
                 {% endfor %}
             </div>
@@ -219,14 +221,109 @@
     <div class="modal-content">
         <div class="modal-header">
             <h3>Delete Ticket</h3>
-            <button onclick="closeModal()" class="close-btn">×</button>
+            <button onclick="closeDeleteModal()" class="close-btn">×</button>
         </div>
         <div class="modal-body">
             <p id="deleteMessage">Are you sure you want to delete this ticket? This action cannot be undone.</p>
         </div>
         <div class="modal-actions">
-            <button onclick="closeModal()" class="btn btn-secondary">Cancel</button>
+            <button onclick="closeDeleteModal()" class="btn btn-secondary">Cancel</button>
             <button onclick="deleteTicket()" class="btn btn-danger">Delete</button>
+        </div>
+    </div>
+</div>
+
+<!-- Create/Edit Ticket Modal -->
+<div id="ticketModal" class="modal" style="display: none;">
+    <div class="modal-content ticket-modal-content">
+        <div class="ticket-form-page">
+            <div class="form-container">
+                <div class="form-card">
+                    <!-- Header -->
+                    <div class="form-header">
+                        <h2 id="ticketModalTitle">Create Ticket</h2>
+                        <button onclick="closeTicketModal()" class="close-btn">×</button>
+                    </div>
+
+                    <!-- Form -->
+                    <form id="ticketForm" class="ticket-form">
+                        <input type="hidden" id="ticketId" name="id" value="">
+                        
+                        <div class="form-group">
+                            <label for="title" class="form-label">Title *</label>
+                            <input
+                                type="text"
+                                id="title"
+                                name="title"
+                                class="form-input"
+                                placeholder="Enter ticket title"
+                                value=""
+                                required
+                            />
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea
+                                id="description"
+                                name="description"
+                                class="form-textarea"
+                                placeholder="Describe the issue or request..."
+                                rows="4"
+                            ></textarea>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="status" class="form-label">Status *</label>
+                                <select
+                                    id="status"
+                                    name="status"
+                                    class="form-select"
+                                    required
+                                >
+                                    <option value="open">Open</option>
+                                    <option value="in_progress">In Progress</option>
+                                    <option value="closed">Closed</option>
+                                </select>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="priority" class="form-label">Priority</label>
+                                <select
+                                    id="priority"
+                                    name="priority"
+                                    class="form-select"
+                                >
+                                    <option value="low">Low</option>
+                                    <option value="medium" selected>Medium</option>
+                                    <option value="high">High</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="assignee" class="form-label">Assignee</label>
+                            <input
+                                type="text"
+                                id="assignee"
+                                name="assignee"
+                                class="form-input"
+                                placeholder="Assign to team member"
+                                value="Unassigned"
+                            />
+                        </div>
+
+                        <!-- Form Actions -->
+                        <div class="form-actions">
+                            <button type="button" onclick="closeTicketModal()" class="btn btn-secondary">Cancel</button>
+                            <button type="submit" class="btn btn-primary">
+                                Create Ticket
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -305,6 +402,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    padding: 2rem;
+    box-sizing: border-box;
 }
 
 .modal-content {
@@ -314,8 +413,15 @@
     max-width: 400px;
     box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
     border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
     animation: modalSlideIn 0.3s ease;
+    max-height: 90vh;
+    overflow: hidden;
+}
+
+.ticket-modal-content {
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
 }
 
 @keyframes modalSlideIn {
@@ -328,51 +434,7 @@
         transform: translateY(0);
     }
 }
-.btn {
-    padding: 0.75rem 1.5rem;
-    border: none;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    flex: 1;
-}
 
-.btn-secondary {
-    background: #f8f9fa;
-    color: var(--text-primary);
-    border: 2px solid #e9ecef;
-}
-
-.btn-secondary:hover {
-    background: #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-    transform: translateY(-1px);
-}
-
-.close-btn {
-    background: none;
-    border: none;
-    font-size: 1.5rem;
-    cursor: pointer;
-    color: var(--text-secondary);
-    padding: 0.25rem;
-    border-radius: 4px;
-    transition: all 0.3s ease;
-}
-
-.close-btn:hover {
-    background: #f8f9fa;
-    color: var(--text-primary);
-}
 .tickets-page {
     min-height: 100vh;
     padding-bottom: 2rem;
@@ -647,73 +709,6 @@
     transform: translateY(-2px);
 }
 
-/* Modal */
-.modal {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    backdrop-filter: blur(5px);
-    z-index: 1000;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.modal-content {
-    background: white;
-    border-radius: 16px;
-    width: 100%;
-    max-width: 400px;
-    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    overflow: hidden;
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1.5rem 2rem;
-    border-bottom: 1px solid #e9ecef;
-}
-
-.modal-header h3 {
-    margin: 0;
-    color: var(--text-primary);
-    font-size: 1.25rem;
-    font-weight: 600;
-}
-
-.modal-body {
-    padding: 2rem;
-}
-
-.modal-body p {
-    margin: 0;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    text-align: center;
-}
-
-.modal-actions {
-    display: flex;
-    gap: 1rem;
-    padding: 1.5rem 2rem;
-    border-top: 1px solid #e9ecef;
-}
-
-.btn-danger {
-    background: var(--error-color);
-    color: white;
-}
-
-.btn-danger:hover {
-    background: #c0392b;
-}
-
 /* Filters */
 .tickets-filters {
     background: white;
@@ -831,6 +826,110 @@
     color: var(--text-secondary);
 }
 
+/* Form Styles */
+.ticket-form-page {
+    width: 100%;
+}
+
+.form-container {
+    width: 100%;
+}
+
+.form-card {
+    background: white;
+    border-radius: 20px;
+    padding: 0;
+    box-shadow: none;
+    border: none;
+}
+
+.form-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1.5rem 2rem 0;
+}
+
+.form-header h2 {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    font-weight: 600;
+}
+
+.ticket-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 0 2rem 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-label {
+    font-weight: 600;
+    color: var(--text-primary);
+    font-size: 0.875rem;
+}
+
+.form-input,
+.form-select,
+.form-textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid #e9ecef;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: white;
+}
+
+.form-input:focus,
+.form-select:focus,
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 100px;
+    font-family: inherit;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e9ecef;
+}
+
+.btn-primary {
+    background: linear-gradient(45deg, var(--primary-color), #5a6fd8);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+    transform: translateY(-1px);
+}
+
 /* Responsive Design */
 @media (max-width: 1024px) {
     .tickets-grid {
@@ -857,8 +956,12 @@
         justify-content: center;
     }
     
+    .modal {
+        padding: 1rem;
+    }
+    
     .modal-content {
-        margin: 1rem;
+        margin: 0;
     }
     
     .modal-actions {
@@ -872,6 +975,18 @@
     .filter-tab {
         padding: 0.5rem 1rem;
         font-size: 0.8rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+    
+    .btn {
+        width: 100%;
     }
 }
 
@@ -908,11 +1023,61 @@
         min-width: 100px;
         justify-content: center;
     }
+    
+    .form-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+    }
+    
+    .ticket-form {
+        padding: 0 1rem 1rem;
+    }
+    
+    .form-header {
+        padding: 1rem 1rem 0;
+    }
 }
 </style>
 
 <script>
 let currentTicketId = null;
+let tickets = {{ tickets|json_encode|raw }};
+
+// Initialize tickets in localStorage if not present
+function initializeTickets() {
+    if (!localStorage.getItem('tickets')) {
+        localStorage.setItem('tickets', JSON.stringify(tickets));
+    }
+    return JSON.parse(localStorage.getItem('tickets'));
+}
+
+// Update filter counts
+function updateFilterCounts() {
+    const allTickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    const counts = {
+        all: allTickets.length,
+        open: allTickets.filter(t => t.status === 'open').length,
+        in_progress: allTickets.filter(t => t.status === 'in_progress').length,
+        closed: allTickets.filter(t => t.status === 'closed').length,
+        high: allTickets.filter(t => t.priority === 'high').length,
+        medium: allTickets.filter(t => t.priority === 'medium').length,
+        low: allTickets.filter(t => t.priority === 'low').length
+    };
+
+    // Update all filter tab counts
+    Object.keys(counts).forEach(filter => {
+        const tab = document.querySelector(`[data-filter="${filter}"]`);
+        if (tab) {
+            const countElement = tab.querySelector('.filter-count');
+            if (countElement) {
+                countElement.textContent = counts[filter];
+            }
+            tab.setAttribute('data-count', counts[filter]);
+        }
+    });
+}
 
 function getStatusColor(status) {
     switch (status) {
@@ -955,55 +1120,58 @@ function clearSearch() {
 }
 
 function openCreateTicketModal() {
-    // This would open your create ticket modal
-    // You'll need to implement this based on your existing modal structure
-    console.log('Open create ticket modal');
-    // Example: document.getElementById('createTicketModal').style.display = 'flex';
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    // Reset form
+    form.reset();
+    document.getElementById('ticketId').value = '';
+    document.getElementById('assignee').value = 'Unassigned';
+    document.getElementById('priority').value = 'medium';
+    document.getElementById('status').value = 'open';
+    
+    // Update UI
+    title.textContent = 'Create Ticket';
+    submitBtn.textContent = 'Create Ticket';
+    
+    modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-{# function confirmDelete(ticketId, ticketTitle) {
-    currentTicketId = ticketId;
-    const modal = document.getElementById('deleteModal');
-    const message = document.getElementById('deleteMessage');
-    message.textContent = `Are you sure you want to delete "${ticketTitle}"? This action cannot be undone.`;
-    modal.style.display = 'flex';
-} #}
-
-{# function closeModal() {
-    const modal = document.getElementById('deleteModal');
-    modal.style.display = 'none';
-    currentTicketId = null;
-} #}
-
-{# function deleteTicket() {
-    if (currentTicketId) {
-        // Send DELETE request via fetch API
-        fetch(`/tickets/delete/${currentTicketId}`, {
-            method: 'DELETE',
-            headers: {
-                'Content-Type': 'application/json',
-            }
-        })
-        .then(response => {
-            if (response.ok) {
-                // Reload the page to see updated ticket list
-                window.location.reload();
-            } else {
-                alert('Error deleting ticket');
-            }
-        })
-        .catch(error => {
-            console.error('Error:', error);
-            alert('Error deleting ticket');
-        })
-        .finally(() => {
-            closeModal();
-        });
+function editTicket(ticketId) {
+    const modal = document.getElementById('ticketModal');
+    const form = document.getElementById('ticketForm');
+    const title = document.getElementById('ticketModalTitle');
+    const submitBtn = form.querySelector('button[type="submit"]');
+    
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    const ticket = tickets.find(t => t.id === ticketId);
+    
+    if (ticket) {
+        // Populate form
+        document.getElementById('ticketId').value = ticket.id;
+        document.getElementById('title').value = ticket.title;
+        document.getElementById('description').value = ticket.description || '';
+        document.getElementById('status').value = ticket.status;
+        document.getElementById('priority').value = ticket.priority;
+        document.getElementById('assignee').value = ticket.assignee;
+        
+        // Update UI
+        title.textContent = 'Edit Ticket';
+        submitBtn.textContent = 'Update Ticket';
+        
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
     }
-} #}
+}
 
-let currentTicketId = null;
-let tickets = {{ tickets|json_encode|raw }}; // Assuming tickets are passed from backend
+function closeTicketModal() {
+    const modal = document.getElementById('ticketModal');
+    modal.style.display = 'none';
+    document.body.style.overflow = 'auto';
+}
 
 function confirmDelete(ticketId, ticketTitle) {
     currentTicketId = ticketId;
@@ -1011,36 +1179,104 @@ function confirmDelete(ticketId, ticketTitle) {
     const message = document.getElementById('deleteMessage');
     message.textContent = `Are you sure you want to delete "${ticketTitle}"? This action cannot be undone.`;
     modal.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
 }
 
-function closeModal() {
+function closeDeleteModal() {
     const modal = document.getElementById('deleteModal');
     modal.style.display = 'none';
     currentTicketId = null;
+    document.body.style.overflow = 'auto';
 }
 
 function deleteTicket() {
     if (currentTicketId) {
-        // Frontend deletion - remove from DOM
+        // Remove from localStorage
+        const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+        const updatedTickets = tickets.filter(ticket => ticket.id !== currentTicketId);
+        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        
+        // Remove from DOM
         const ticketElement = document.querySelector(`[data-ticket-id="${currentTicketId}"]`);
         if (ticketElement) {
             ticketElement.remove();
         }
         
-        // If you want to persist in localStorage (optional)
-        const savedTickets = JSON.parse(localStorage.getItem('tickets') || '[]');
-        const updatedTickets = savedTickets.filter(ticket => ticket.id !== currentTicketId);
-        localStorage.setItem('tickets', JSON.stringify(updatedTickets));
+        // Update filter counts
+        updateFilterCounts();
         
-        closeModal();
-        
-        // Show success message or update UI
+        closeDeleteModal();
         showNotification('Ticket deleted successfully', 'success');
+        
+        // Check if grid is empty and show empty state
+        const ticketsGrid = document.getElementById('ticketsGrid');
+        if (ticketsGrid && ticketsGrid.children.length === 0) {
+            showEmptyState();
+        }
     }
 }
 
+function showEmptyState() {
+    const ticketsContent = document.querySelector('.tickets-content');
+    const emptyStateHTML = `
+        <div class="empty-state">
+            <div class="empty-icon">🎫</div>
+            <h3 class="empty-title">No tickets found</h3>
+            <p class="empty-subtitle">Get started by creating your first ticket</p>
+            <button onclick="openCreateTicketModal()" class="empty-action-btn">
+                Create Your First Ticket
+            </button>
+        </div>
+    `;
+    ticketsContent.innerHTML = emptyStateHTML;
+}
+
+function handleFormSubmit(event) {
+    event.preventDefault();
+    
+    const formData = new FormData(event.target);
+    const ticketData = {
+        id: formData.get('id') || generateId(),
+        title: formData.get('title'),
+        description: formData.get('description'),
+        status: formData.get('status'),
+        priority: formData.get('priority'),
+        assignee: formData.get('assignee'),
+        createdAt: formData.get('id') ? undefined : new Date().toISOString(),
+        updatedAt: new Date().toISOString()
+    };
+    
+    // Get existing tickets
+    const tickets = JSON.parse(localStorage.getItem('tickets')) || [];
+    
+    if (formData.get('id')) {
+        // Update existing ticket
+        const index = tickets.findIndex(t => t.id === formData.get('id'));
+        if (index !== -1) {
+            tickets[index] = { ...tickets[index], ...ticketData };
+            showNotification('Ticket updated successfully', 'success');
+        }
+    } else {
+        // Create new ticket
+        tickets.push(ticketData);
+        showNotification('Ticket created successfully', 'success');
+    }
+    
+    // Save to localStorage
+    localStorage.setItem('tickets', JSON.stringify(tickets));
+    
+    // Close modal and reload to show changes
+    closeTicketModal();
+    setTimeout(() => {
+        //window.location.reload();
+    }, 1000);
+}
+
+function generateId() {
+    return 'ticket_' + Math.random().toString(36).substr(2, 9);
+}
+
 function showNotification(message, type) {
-    // Simple notification implementation
     const notification = document.createElement('div');
     notification.className = `notification ${type}`;
     notification.textContent = message;
@@ -1053,11 +1289,16 @@ function showNotification(message, type) {
         color: white;
         border-radius: 8px;
         z-index: 10000;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     `;
     document.body.appendChild(notification);
     
     setTimeout(() => {
-        notification.remove();
+        notification.style.opacity = '0';
+        notification.style.transform = 'translateX(100px)';
+        setTimeout(() => {
+            notification.remove();
+        }, 300);
     }, 3000);
 }
 
@@ -1072,17 +1313,37 @@ document.getElementById('searchInput')?.addEventListener('input', function(e) {
         url.searchParams.delete('search');
     }
     
-    // Debounce the search
     clearTimeout(window.searchTimeout);
     window.searchTimeout = setTimeout(() => {
         window.location.href = url.toString();
     }, 500);
 });
 
-// Close modal on overlay click
-document.getElementById('deleteModal')?.addEventListener('click', function(e) {
-    if (e.target === this) {
-        closeModal();
+// Close modals on overlay click
+document.addEventListener('click', function(e) {
+    if (e.target.classList.contains('modal')) {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Close modals on Escape key
+document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') {
+        closeTicketModal();
+        closeDeleteModal();
+    }
+});
+
+// Initialize when page loads
+document.addEventListener('DOMContentLoaded', function() {
+    initializeTickets();
+    updateFilterCounts();
+    
+    // Add form submit handler
+    const ticketForm = document.getElementById('ticketForm');
+    if (ticketForm) {
+        ticketForm.addEventListener('submit', handleFormSubmit);
     }
 });
 </script>
