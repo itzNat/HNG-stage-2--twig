@@ -1,0 +1,14 @@
+{
+  "name": "HNG-stage-2--twig",
+  "version": "1.0.0",
+  "scripts": {
+    "start": "node app.js",
+    "build": "nom install"
+  },
+  dependencies: {
+    "twig": "^1.16.0",
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
