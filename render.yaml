@@ -1,9 +1,11 @@
 services:
   - type: web
     name: HNG-stage-2--twig
-    env: node
-    buildCommand: composer install --no-dev --optimize-autoloader && mkdir -p var/cache/twig && chmod -R 755 var/
-    startCommand: php -S 0.0.0.0:$PORT public/index.php
+    
+ env: php
+ plan: free
+ buildCommand: composer install --no-dev --optimize-autoloader
+ startCommand: php -S 0.0.0.0:$PORT -t public
     envVars:
       - key: APP_ENV
         value: production
