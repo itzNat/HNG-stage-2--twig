@@ -1,0 +1,10 @@
+vendor/
+var/
+var/cache/
+var/log/
+node_modules/
+.env
+.git
+.gitignore
+.DS_Store
+public/assets/

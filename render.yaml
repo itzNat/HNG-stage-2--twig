@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: stage2-twig
+    env: docker
+    branch: main
+    dockerfilePath: Dockerfile
+    plan: free
